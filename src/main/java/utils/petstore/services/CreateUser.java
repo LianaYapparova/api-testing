@@ -1,7 +1,6 @@
 package utils.petstore.services;
 
 import com.github.javafaker.Faker;
-import com.github.javafaker.IdNumber;
 import pogos.petstore.users.User;
 
 public class CreateUser {
