@@ -1,11 +1,11 @@
-package utils.petstore.services;
+package utils.petstore;
 
 import com.github.javafaker.Faker;
 import pogos.petstore.pets.Category;
 import pogos.petstore.pets.Pet;
 
 public class CreatePet {
-    private static Faker faker = new Faker();
+    private final static Faker faker = new Faker();
     public static Pet getPet(){
         long id = Long.parseLong(faker.number().digits(2));
         String name = faker.dog().name();

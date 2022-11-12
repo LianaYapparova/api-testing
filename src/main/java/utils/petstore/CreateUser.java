@@ -1,10 +1,10 @@
-package utils.petstore.services;
+package utils.petstore;
 
 import com.github.javafaker.Faker;
 import pogos.petstore.users.User;
 
 public class CreateUser {
-    private static Faker faker = new Faker();
+    private final static Faker faker = new Faker();
 
     public static User getUser() {
         int id = Integer.parseInt(faker.number().digits(4));

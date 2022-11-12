@@ -1,4 +1,4 @@
-package utils.petstore.services;
+package utils.petstore;
 
 import org.testng.annotations.DataProvider;
 

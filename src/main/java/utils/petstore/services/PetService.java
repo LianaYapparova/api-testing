@@ -6,6 +6,7 @@ import io.restassured.response.Response;
 import pogos.petstore.pets.Pet;
 
 import java.io.File;
+import utils.petstore.CreatePet;
 
 import static io.restassured.RestAssured.given;
 
@@ -13,7 +14,7 @@ public class PetService extends RestService {
     private final static String BASE_PATH = "/pet/";
     private final static String PATH_POST_IMAGE = "/pet/%d/uploadImage";
     private final static String PATH_GET_BY_STATUS = "/pet/findByStatus";
-    private Pet pet;
+    private final Pet pet;
 
 
     public PetService() {
@@ -29,7 +30,7 @@ public class PetService extends RestService {
                 .post();
     }
 
-    public Response getPetResponse() {
+    public Response getPetResponse(Pet pet) {
         return given()
                 .spec(REQ_SPEC).basePath(BASE_PATH + pet.getId())
                 .when()
@@ -44,7 +45,7 @@ public class PetService extends RestService {
                 .get();
     }
 
-    public Response postUploadImageResponse() {
+    public Response postUploadImageResponse(Pet pet) {
         File file = new File("src/test/resources/uploads/test.jpg");
         return given()
                 .spec(REQ_SPEC).contentType("multipart/form-data").basePath(String.format(PATH_POST_IMAGE, pet.getId()))
@@ -53,7 +54,7 @@ public class PetService extends RestService {
                 .post();
     }
 
-    public Response putPetResponse() {
+    public Response putPetResponse(Pet pet) {
         pet.setName("NewName");
         return given()
                 .spec(REQ_SPEC)
@@ -63,7 +64,7 @@ public class PetService extends RestService {
     }
 
 
-    public Response deletePetResponse() {
+    public Response deletePetResponse(Pet pet) {
         return given()
                 .spec(REQ_SPEC).basePath(BASE_PATH + pet.getId())
                 .when()

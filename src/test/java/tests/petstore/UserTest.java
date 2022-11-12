@@ -1,13 +1,13 @@
 package tests.petstore;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import io.restassured.response.Response;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pogos.petstore.ResponseBody;
 import pogos.petstore.users.User;
 import utils.petstore.services.UsersService;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class UserTest {
     private UsersService usersService;
@@ -42,8 +42,9 @@ public class UserTest {
         assertThat(response.as(ResponseBody.class)).extracting(ResponseBody::getMessage).isEqualTo("ok");
     }
 
-    @Test(dependsOnMethods = "postUser")
+    @Test
     public void getUser(){
+        usersService.createUser();
         Response response = usersService.getUserResponse();
         response.print();
         assertThat(response.getStatusCode()).isEqualTo(200);
@@ -68,8 +69,9 @@ public class UserTest {
 
     }
 
-    @Test(dependsOnMethods = "getUser")
+    @Test
     public void deleteUser(){
+        usersService.createUser();
         Response response = usersService.deleteUserResponse();
         response.print();
         assertThat(response.getStatusCode()).isEqualTo(200);

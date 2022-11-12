@@ -6,6 +6,7 @@ import io.restassured.response.Response;
 import pogos.petstore.users.User;
 
 import java.util.*;
+import utils.petstore.CreateUser;
 
 import static io.restassured.RestAssured.given;
 
@@ -15,7 +16,7 @@ public class UsersService extends RestService {
     private final static String PATH_LOGOUT = "/user/logout";
     private final static String PATH_CREATE_WITH_ARRAY = "/user/createWithArray";
     private final static String PATH_CREATE_WITH_LIST = "/user/createWithList";
-    private User user;
+    private final User user;
 
 
     public UsersService() {
@@ -54,7 +55,6 @@ public class UsersService extends RestService {
     }
 
     public Response getUserResponse() {
-
         return given()
                 .spec(REQ_SPEC)
                 .when()

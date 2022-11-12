@@ -4,13 +4,14 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import pogos.petstore.store.Order;
+import utils.petstore.CreateOrder;
 
 import static io.restassured.RestAssured.given;
 
 public class StoreService extends RestService {
     private final static String BASE_PATH = "/store/order";
     private final static String PATH_INVENTORY = "/store/inventory";
-    private Order order;
+    private final Order order;
 
 
     public StoreService() {
@@ -31,14 +32,14 @@ public class StoreService extends RestService {
         return order;
     }
 
-    public Response getOrderResponse() {
+    public Response getOrderResponse(Order order) {
         return given()
                 .spec(REQ_SPEC)
                 .when()
                 .get("/" + order.getId());
     }
 
-    public Response deleteOrderResponse() {
+    public Response deleteOrderResponse(Order order) {
         return given()
                 .spec(REQ_SPEC)
                 .when()
